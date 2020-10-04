@@ -151,7 +151,7 @@ function transformStreams(input,output){
     ); 
 }
 function ActionWarning(action){
-  process.stderr.write ('"'+ action +'"' +' -  is wrong action ');
+  process.stderr.write (chalk.redBright('"'+ action +'"' +' -  is wrong action '));
   process.exit(1);
 }
 
