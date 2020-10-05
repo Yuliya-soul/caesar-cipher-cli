@@ -187,12 +187,12 @@ if ((ParamObjTransformed.input==='empty')&(ParamObjTransformed.output!='empty'))
   if ((ParamObjTransformed.action==='encode')||(ParamObjTransformed.action==='decode')){
     fs.access(path1, fs.F_OK, (err) => {
       if (err) {
-        process.stderr.write (chalk.red(`Write output.txt instead of:  ${ParamObjTransformed.output}`));
+        process.stderr.write (chalk.red(`Write name of existing file instead of:  ${ParamObjTransformed.output}`));
         process.exit(1);
         return
       }
       const readableStream = process.stdin;
-      const writeableStream = fs.createWriteStream('output.txt',{ flags: 'a'});;
+      const writeableStream = fs.createWriteStream(path.join(__dirname,ParamObjTransformed.output),{ flags: 'a'});;
       transformStreams(readableStream,writeableStream);
         }) 
   
@@ -208,12 +208,12 @@ if ((ParamObjTransformed.input==='empty')&(ParamObjTransformed.output!='empty'))
   if ((ParamObjTransformed.action==='encode')||(ParamObjTransformed.action==='decode')){
      fs.access(path1, fs.F_OK, (err) => {
   if (err) {
-    process.stderr.write (chalk.red(`Write output.txt instead of:  ${ParamObjTransformed.output}`));
+    process.stderr.write (chalk.red(`Write name of existing file instead of::  ${ParamObjTransformed.output}`));
     process.exit(1);
     return
   }
   const readableStream = fs.createReadStream(path.join(__dirname,ParamObjTransformed.input), "utf8");
-  const writeableStream = fs.createWriteStream('output.txt',{ flags: 'a'});
+  const writeableStream =  fs.createWriteStream(path.join(__dirname,ParamObjTransformed.output),{ flags: 'a'});;
   transformStreams(readableStream,writeableStream);
 }) 
    
