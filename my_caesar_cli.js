@@ -173,7 +173,7 @@ if((ParamObjTransformed.input==='empty')&(ParamObjTransformed.output==='empty'))
 
 if ((ParamObjTransformed.output==='empty')&(ParamObjTransformed.input!='empty')){
   if ((ParamObjTransformed.action==='encode')||(ParamObjTransformed.action==='decode')){
-    const readableStream = fs.createReadStream(path.join(__dirname,ParamObjTransformed.input), "utf8");
+    const readableStream = fs.createReadStream(path.resolve(__dirname,ParamObjTransformed.input), "utf8");
     const writeableStream = process.stdout;
     transformStreams(readableStream,writeableStream);
   }
@@ -192,7 +192,7 @@ if ((ParamObjTransformed.input==='empty')&(ParamObjTransformed.output!='empty'))
         return
       }
       const readableStream = process.stdin;
-      const writeableStream = fs.createWriteStream(path.join(__dirname,ParamObjTransformed.output),{ flags: 'a'});;
+      const writeableStream = fs.createWriteStream(path.resolve(__dirname,ParamObjTransformed.output),{ flags: 'a'});;
       transformStreams(readableStream,writeableStream);
         }) 
   
@@ -212,8 +212,8 @@ if ((ParamObjTransformed.input==='empty')&(ParamObjTransformed.output!='empty'))
     process.exit(1);
     return
   }
-  const readableStream = fs.createReadStream(path.join(__dirname,ParamObjTransformed.input), "utf8");
-  const writeableStream =  fs.createWriteStream(path.join(__dirname,ParamObjTransformed.output),{ flags: 'a'});;
+  const readableStream = fs.createReadStream(path.resolve(__dirname,ParamObjTransformed.input), "utf8");
+  const writeableStream =  fs.createWriteStream(path.resolve(__dirname,ParamObjTransformed.output),{ flags: 'a'});;
   transformStreams(readableStream,writeableStream);
 }) 
    
